@@ -1,7 +1,7 @@
 import axios from 'axios';
-
+//Local BASE Url http://localhost:3000
 const api = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://product-management-app-z9if.onrender.com',
 });
 
 api.interceptors.request.use(
