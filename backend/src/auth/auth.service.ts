@@ -8,6 +8,7 @@ export class AuthService {
   constructor(private prisma: PrismaService) {}
 
   async signup(email: string, password: string, role: string = 'USER') {
+    console.log(email,password,role);
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await this.prisma.user.create({
       data: { email, password: hashedPassword, role },
@@ -22,6 +23,13 @@ export class AuthService {
     }
     const payload = { userId: user.id, email: user.email, role: user.role };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }); // Signs token with 1-hour expiry
-    return { token };
+    return {
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      },
+    };
   }
 }

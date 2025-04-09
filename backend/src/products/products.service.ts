@@ -25,7 +25,11 @@ export class ProductsService {
   async deleteProduct(id: string) {
     return this.prisma.product.delete({ where: { id } });
   }
-
+  async getProductById(id: string) {
+    return this.prisma.product.findUnique({
+      where: { id },
+    });
+  }
   async filterProducts(category?: string, priceMin?: number, priceMax?: number, rating?: number) {
     return this.prisma.product.findMany({
       where: {
