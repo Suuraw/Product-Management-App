@@ -8,7 +8,7 @@ import { Product } from '../types';
 import rupee from "../assests/rupee.png";
 
 export default function ProductListPage() {
-  const { user, isAdmin, isAuthenticated, logout } = useAuth();
+  const { isAdmin, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const [filters, setFilters] = useState({
